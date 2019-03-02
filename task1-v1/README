@@ -1,0 +1,15 @@
+#Deploy Ansible Script in Existing machine.
+
+The Prerequisite to deploy this script, you need to prepare the following:
+
+1.Create VM at any Host Public or Local machine, save the IP of VM and Create user with sudors privileges to run the Ansible script.
+Note: we can deploy the script through root user but i not recommend that.
+
+2.Open “hosts” file and add the IP of your VM under “webserver” section
+
+3.Open “group_vars/all” file and Change “srv_pub_ip” to VM IP also change “sys_user” and “sys_grp” to your username and group that you created in first step.
+
+4.Open “playbook.yml” file and change the “user” and “password”
+
+5.Run the script through this command “ansible-playbook playbook.yml -i hosts -k”
+

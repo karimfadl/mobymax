@@ -1,0 +1,35 @@
+---
+#System Informations
+sys_user: mobymax
+sys_grp: mobymax
+user_id: 1005
+group_id: 1005
+
+srv_hostname: Mobymax-AIO
+srv_pub_ip: 192.168.8.110
+srv_pri_ip: localhost
+
+#Nginx-PHP server configuration
+nginx_port: 80
+server_hostname: mobymax.local www.mobymax.local
+rootdir_nginx: /home/{{ sys_user }}/public_html/public
+rootdir: /home/{{ sys_user }}/public_html/
+
+#MySQL Settings
+mysqlservice: mysqld
+mysql_port: 3306
+mysql_root_username: root
+mysql_root_password: K!@79ByG#2Mz
+
+#Website Settings
+db_name: mobymax
+db_user: mobymax
+db_password: mobymax
+App_Url: http://mobymax.local
+
+#Templates Files
+src_ng_conf: nginx_vhost.conf
+dest_ng_conf: /etc/nginx/conf.d/task1.conf
+src_php_conf: php_fpm_conf.conf
+dest_php_conf: /etc/php-fpm.d/task1.conf
+

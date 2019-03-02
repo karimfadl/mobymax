@@ -1,0 +1,37 @@
+---
+- name: Install Laravel packages
+  yum: name={{ item }} state=installed
+  with_items:
+    - nodejs
+    - nodesource-release-el7-1.noarch
+
+- name: Install Memcached
+  yum: name=memcached state=present
+
+- name: Start Memcached Service
+  service: name=memcached state=started enabled=yes
+
+- name: Install Elasticsearch
+  yum: name=elasticsearch state=present
+
+- name: Start Elasticsearch Service
+  service: name=elasticsearch state=started enabled=yes
+
+- name: Create SFTP Dir
+  command: mkdir -p /var/sftp/uploads
+
+- name: Change SFTP Dir Owner
+  command: chown root:root /var/sftp
+
+- name: Change SFTP Dir Permission
+  command: chmod 755 /var/sftp
+
+- name: Give SFTP user permission to use it
+  command: chown {{ sys_user }}:{{ sys_grp }} /var/sftp/uploads
+ 
+- name: Restrict Directory Access by Editing in SSH Config file
+  template: src=sshd_config dest=/etc/ssh/sshd_config  
+  
+- name: Restart sshd Service
+  service: name=sshd state=restarted enabled=yes
+

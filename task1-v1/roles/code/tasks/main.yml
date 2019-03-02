@@ -1,0 +1,45 @@
+---
+- name: Clone Code Repo from Git
+  git: repo='https://github.com/sroutier/laravel-enterprise-starter-kit' dest=/home/{{ sys_user }}/public_html/ force=yes
+
+- name: Install Composer
+  command: chdir=/home/{{ sys_user }}/public_html/ composer install
+
+- name: solve VerifyCsrfToken issue
+  template: src=Kernel.php dest={{ rootdir }}app/Http/Kernel.php
+
+- name: Change ownership of Dir installation
+  file: path={{ rootdir }} owner={{ sys_user }} group={{sys_grp }} state=directory recurse=yes
+
+- name: Remove Default Nginx Conf File
+  file: path=/etc/nginx/conf.d/default.conf state=absent
+
+- name: Configure Default Nginx Conf File
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: Copy nginx configuration
+  template: src={{ src_ng_conf }} dest={{ dest_ng_conf }}
+
+- name: Remove Default pool
+  file: path=/etc/php-fpm.d/www.conf state=absent
+
+- name: Copy php-fpm configuration file
+  template: src={{ src_php_conf }} dest={{ dest_php_conf }}
+
+- name: Copy php.ini configuration file
+  template: src=php.ini dest=/etc/php.ini
+
+- name: Disable SeLinux
+  selinux: state=disabled
+
+- name: Restart Nginx Service
+  service: name=nginx state=restarted enabled=yes
+
+- name: Restart php-fpm Service
+  service: name=php-fpm state=restarted enabled=yes
+
+- name: Transfer the script
+  template: src=sql.sh dest={{ rootdir }} mode=0777
+
+- name: Execute the script
+  command: chdir=/home/{{ sys_user }}/public_html/ sh sql.sh

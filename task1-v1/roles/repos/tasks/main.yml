@@ -1,0 +1,15 @@
+---
+- name: Copy the EPEL repository
+  template: src=epel.repo dest=/etc/yum.repos.d/
+
+- name: Copy the Webtatic repository
+  template: src=webtatic.repo dest=/etc/yum.repos.d/
+
+- name: Copy the Mariadb repository
+  template: src=mariadb.repo dest=/etc/yum.repos.d/
+
+- name: Copy Nodejs Repo
+  template: src=nodesource-el7.repo dest=/etc/yum.repos.d/
+
+- name: Copy the elasticsearch repository
+  template: src=elasticsearch.repo dest=/etc/yum.repos.d/

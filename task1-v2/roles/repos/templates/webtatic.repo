@@ -1,0 +1,18 @@
+[webtatic]
+name=Webtatic Repository EL7 - $basearch
+mirrorlist=https://mirror.webtatic.com/yum/el7/$basearch/mirrorlist
+enabled=1
+gpgcheck=0
+
+[webtatic-debuginfo]
+name=Webtatic Repository EL7 - $basearch - Debug
+mirrorlist=https://mirror.webtatic.com/yum/el7/$basearch/debug/mirrorlist
+enabled=0
+gpgcheck=0
+
+[webtatic-source]
+name=Webtatic Repository EL7 - $basearch - Source
+mirrorlist=https://mirror.webtatic.com/yum/el7/SRPMS/mirrorlist
+enabled=0
+gpgcheck=0
+

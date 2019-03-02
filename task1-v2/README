@@ -1,0 +1,10 @@
+#Create Vagrant machine and Provision Ansible Script.
+
+The Prerequisite to deploy this script, you need to prepare the following: 
+
+1.Install Virtual Box , Ansible and Vagrant Packages in your system.
+
+2.Run the Script through This command “vagrant up”
+
+Note: in Official Doc for deploying the code “https://lesk.it/fetchdependencies.html” they using Sql-Light for deploying that and i followed the doc.
+In case we need to use Mysql DB we need to change the .env file.

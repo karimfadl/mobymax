@@ -1,0 +1,12 @@
+[nodesource]
+name=Node.js Packages for Enterprise Linux 7 - $basearch
+baseurl=https://rpm.nodesource.com/pub_8.x/el/7/$basearch
+enabled=1
+gpgcheck=0
+
+[nodesource-source]
+name=Node.js for Enterprise Linux 7 - $basearch - Source
+baseurl=https://rpm.nodesource.com/pub_8.x/el/7/SRPMS
+enabled=1
+gpgcheck=0
+

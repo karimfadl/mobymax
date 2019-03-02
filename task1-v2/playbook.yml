@@ -1,0 +1,14 @@
+---
+- name: Deploy Task1 For Mobymax
+  hosts: all
+  become: yes
+  roles:
+    - repos
+    - system
+    - nginx
+    - php-fpm
+    - mariadb
+    - secure_db
+    - laravel-dep
+    - code
+    - iptables

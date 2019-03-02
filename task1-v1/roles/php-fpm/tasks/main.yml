@@ -1,0 +1,38 @@
+---
+- name: Install php-fpm and deps
+  yum: name={{ item }} state=present
+  with_items:
+    - php71w-fpm
+    - php71w-pdo
+    - php71w-mcrypt
+    - php71w-curl
+    - php71w-cli
+    - php71w-mysqlnd
+    - php71w-gd
+    - php71w-xsl
+    - php71w-xml
+    - php71w-json
+    - php71w-intl 
+    - php71w-pear
+    - php71w-devel
+    - php71w-mbstring
+    - php71w-zip
+    - php71w-soap
+    - php71w-common
+    - php71w-ldap
+
+- name: Install PHP Laravel Modules
+  yum: name={{ item }} state=installed
+  with_items:
+    - php-composer-spdx-licenses
+    - php-composer-semver
+    - php-composer-ca-bundle
+
+- name: Install Composer
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer creates=/usr/bin/composer
+
+- name: Create a new directory for session path.
+  file: path=/var/lib/php/session/ state=directory owner=nginx group=nginx mode=0777
+
+- name: Start PHP-Fpm Service
+  service: name=php-fpm state=started enabled=yes

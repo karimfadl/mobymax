@@ -1,0 +1,17 @@
+---
+- name: Deploy Task1 For Mobymax
+  hosts: webserver
+  user: karim
+  become: yes
+  vars:
+    ansible_become_pass: RoroFadl@2501
+  roles:
+    - repos
+    - system
+    - nginx
+    - php-fpm
+    - mariadb
+    - secure_db
+    - laravel-dep
+    - code
+    - iptables
